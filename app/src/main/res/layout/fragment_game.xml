@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragments.GameFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_game"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/id_game_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/background_tv_menu"
+        android:layout_marginTop="10dp"
+        android:text="FIND A COUPLE"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:fontFamily="@font/baloo"
+        android:textSize="45sp"
+        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="sec: 10"
+        android:textStyle="italic"
+        android:fontFamily="@font/baloo"
+        android:textSize="25sp"
+        android:background="@drawable/background_tv_menu"
+        android:layout_marginTop="5dp"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintWidth_percent="0.4"
+        android:id="@+id/id_game_tv_timer"
+        app:layout_constraintEnd_toStartOf="@id/id_game_tv_level"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_game_title"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textColor="@color/white"
+        android:text="level: 1"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:fontFamily="@font/baloo"
+        android:textSize="25sp"
+        android:background="@drawable/background_tv_menu"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@id/id_game_tv_timer"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintWidth_percent="0.4"
+        android:id="@+id/id_game_tv_level"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_game_title"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/id_game_rv"
+        tools:listitem="@layout/item_rv"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintHeight_percent="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_game_tv_timer"
+        app:layout_constraintBottom_toTopOf="@id/id_game_go_or_finish"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/id_game_go_or_finish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.65"
+        app:layout_constraintHeight_percent="0.1"
+        style="@style/ButtonMenuStyle"
+        android:text="-go-"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baloo"
+        android:textSize="50sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
