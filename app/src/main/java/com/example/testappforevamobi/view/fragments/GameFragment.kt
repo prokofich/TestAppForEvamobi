@@ -84,7 +84,7 @@ class GameFragment : Fragment(),InterfaceForAdapter {
 
     // функция установки новых чисел в списке
     private fun setListInAdapter(){
-        val list = listItemsForGame.shuffled().slice(0..4).toMutableList()
+        val list = listItemsForGame.shuffled().slice(0..34).toMutableList()
         list.add(list.shuffled()[0])
         gameAdapter.setListItems(list)
     }

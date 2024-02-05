@@ -49,6 +49,7 @@ class GameAdapter(private val interfaceAdapter:InterfaceForAdapter,private val c
         val constraintLayout = holder.itemView.findViewById<ConstraintLayout>(R.id.id_item_rv_cl)
 
         holder.itemView.setOnClickListener {
+            holder.itemView.isClickable = false
             countTouch+=1
             if(countTouch == 1){
                 item_1 = textView.text.toString().toInt()
