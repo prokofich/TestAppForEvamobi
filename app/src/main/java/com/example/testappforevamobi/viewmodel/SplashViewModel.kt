@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class SplashViewModel():ViewModel() {
+class SplashViewModel:ViewModel() {
 
     val geoInfo : MutableLiveData<Response<GeoInfo>> = MutableLiveData()
 

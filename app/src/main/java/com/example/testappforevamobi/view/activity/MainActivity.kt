@@ -12,7 +12,7 @@ import com.example.testappforevamobi.model.constant.MAIN
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var navController: NavController
+    var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

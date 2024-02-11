@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,9 +29,9 @@ class GameFragment : Fragment(),InterfaceForAdapter {
 
     private var binding: FragmentGameBinding? = null
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var gameAdapter: GameAdapter
-    private lateinit var repository: Repository
+    private var recyclerView: RecyclerView? = null
+    private var gameAdapter: GameAdapter? = null
+    private var repository: Repository? = null
 
     private var jobTimer:Job? = null
 
@@ -54,9 +53,9 @@ class GameFragment : Fragment(),InterfaceForAdapter {
         repository = Repository(requireContext())
 
         recyclerView = binding!!.idGameRv
-        gameAdapter = GameAdapter(this,requireContext())
-        recyclerView.layoutManager = GridLayoutManager(requireContext(),6)
-        recyclerView.adapter = gameAdapter
+        gameAdapter = GameAdapter(this)
+        recyclerView?.layoutManager = GridLayoutManager(requireContext(),6)
+        recyclerView?.adapter = gameAdapter
 
         binding!!.idGameGoOrFinish.setOnClickListener {
             if(binding!!.idGameGoOrFinish.text != "-finish-"){
@@ -86,7 +85,7 @@ class GameFragment : Fragment(),InterfaceForAdapter {
     private fun setListInAdapter(){
         val list = listItemsForGame.shuffled().slice(0..34).toMutableList()
         list.add(list.shuffled()[0])
-        gameAdapter.setListItems(list)
+        gameAdapter?.setListItems(list)
     }
 
     // функция показа обратного отсчета
@@ -98,7 +97,7 @@ class GameFragment : Fragment(),InterfaceForAdapter {
                 binding!!.idGameTvTimer.text = "sec: $i"
             }
             jobTimer!!.cancel()
-            repository.showToast("time is up")
+            repository?.showToast("time is up")
 
             goToGameOverFragment()
 
@@ -114,7 +113,7 @@ class GameFragment : Fragment(),InterfaceForAdapter {
                     level+=1
                     binding!!.idGameTvLevel.text = "level: $level"
                     jobTimer!!.cancel()
-                    repository.showToast("RIGHT!")
+                    repository?.showToast("RIGHT!")
                     setListInAdapter()
                     startTimer()
                 }
@@ -124,7 +123,7 @@ class GameFragment : Fragment(),InterfaceForAdapter {
 
                     // проигрыш
                     jobTimer!!.cancel()
-                    repository.showToast("WRONG...")
+                    repository?.showToast("WRONG...")
                     goToGameOverFragment()
 
                 }
@@ -136,7 +135,7 @@ class GameFragment : Fragment(),InterfaceForAdapter {
     private fun goToGameOverFragment(){
         val bundle = Bundle()
         bundle.putInt(CURRENT_RESULT,level)
-        MAIN.navController.navigate(R.id.action_gameFragment_to_gameOverFragment,bundle)
+        MAIN.navController?.navigate(R.id.action_gameFragment_to_gameOverFragment,bundle)
     }
 
     // функция перехода в меню
@@ -146,7 +145,7 @@ class GameFragment : Fragment(),InterfaceForAdapter {
                 jobTimer!!.cancel()
             }
         }
-        MAIN.navController.navigate(R.id.action_gameFragment_to_menuFragment)
+        MAIN.navController?.navigate(R.id.action_gameFragment_to_menuFragment)
     }
 
 }

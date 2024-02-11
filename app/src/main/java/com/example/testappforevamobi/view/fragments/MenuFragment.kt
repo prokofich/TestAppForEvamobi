@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import com.example.testappforevamobi.R
-import com.example.testappforevamobi.databinding.FragmentGameBinding
 import com.example.testappforevamobi.databinding.FragmentMenuBinding
 import com.example.testappforevamobi.model.constant.MAIN
 
@@ -30,7 +29,7 @@ class MenuFragment : Fragment() {
 
         // переход к игре
         binding!!.idMenuButtonPlay.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_menuFragment_to_gameFragment)
+            MAIN.navController?.navigate(R.id.action_menuFragment_to_gameFragment)
         }
 
         // выход из игры

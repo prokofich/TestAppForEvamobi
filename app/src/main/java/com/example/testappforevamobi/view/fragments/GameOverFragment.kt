@@ -18,7 +18,6 @@ class GameOverFragment : Fragment() {
 
     private var binding: FragmentGameOverBinding? = null
     private var alertDialog: AlertDialog? = null
-    private lateinit var repository: Repository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +31,7 @@ class GameOverFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        repository = Repository(requireContext())
+        val repository = Repository(requireContext())
 
         val currentResult = requireArguments().getInt(CURRENT_RESULT)
         val bestResult = repository.getBestResult()
@@ -51,12 +50,12 @@ class GameOverFragment : Fragment() {
 
         // обработка повтора игры
         binding!!.idGameOverButtonAgain.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_gameOverFragment_to_gameFragment)
+            MAIN.navController?.navigate(R.id.action_gameOverFragment_to_gameFragment)
         }
 
         // обработка перехода в меню
         binding!!.idGameOverButtonMenu.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_gameOverFragment_to_menuFragment)
+            MAIN.navController?.navigate(R.id.action_gameOverFragment_to_menuFragment)
         }
 
         // обработка выхода в меню или повторной игры при нажатии на кнопку НАЗАД
@@ -80,11 +79,11 @@ class GameOverFragment : Fragment() {
         builder.setMessage("куда вы хотите выйти?")
 
         builder.setPositiveButton("в меню") { _, _ ->
-            MAIN.navController.navigate(R.id.action_gameOverFragment_to_menuFragment)
+            MAIN.navController?.navigate(R.id.action_gameOverFragment_to_menuFragment)
         }
 
         builder.setNegativeButton("повтор игры") { _, _ ->
-            MAIN.navController.navigate(R.id.action_gameOverFragment_to_gameFragment)
+            MAIN.navController?.navigate(R.id.action_gameOverFragment_to_gameFragment)
         }
 
         alertDialog = builder.create()

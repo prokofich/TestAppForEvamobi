@@ -1,27 +1,25 @@
 package com.example.testappforevamobi.model.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testappforevamobi.R
 import com.example.testappforevamobi.model.constant.LOSS
 import com.example.testappforevamobi.model.constant.WIN
 
-class GameAdapter(private val interfaceAdapter:InterfaceForAdapter,private val context:Context):RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+class GameAdapter(private val interfaceAdapter:InterfaceForAdapter):RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     class GameViewHolder(view: View):RecyclerView.ViewHolder(view)
 
     private var listItems = mutableListOf<Int>()
     private var countTouch = 0
 
-    private var item_1 = 0
-    private var item_2 = 0
+    private var item1 = 0
+    private var item2 = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_rv,parent,false)
@@ -52,14 +50,14 @@ class GameAdapter(private val interfaceAdapter:InterfaceForAdapter,private val c
             holder.itemView.isClickable = false
             countTouch+=1
             if(countTouch == 1){
-                item_1 = textView.text.toString().toInt()
+                item1 = textView.text.toString().toInt()
                 constraintLayout.setBackgroundResource(R.drawable.background_item_rv_pressed)
             }else{
                 if(countTouch == 2){
-                    item_2 = textView.text.toString().toInt()
+                    item2 = textView.text.toString().toInt()
                     constraintLayout.setBackgroundResource(R.drawable.background_item_rv_pressed)
 
-                    if(item_1 == item_2){
+                    if(item1 == item2){
                         interfaceAdapter.setOutcome(WIN)
                     }else{
                         interfaceAdapter.setOutcome(LOSS)
@@ -75,8 +73,8 @@ class GameAdapter(private val interfaceAdapter:InterfaceForAdapter,private val c
     fun setListItems(list:MutableList<Int>){
         listItems = list
         countTouch = 0
-        item_1 = 0
-        item_2 = 0
+        item1 = 0
+        item2 = 0
         notifyDataSetChanged()
     }
 

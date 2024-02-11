@@ -2,13 +2,11 @@ package com.example.testappforevamobi.view.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Message
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +18,6 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,15 +29,15 @@ class WebFragment : Fragment() {
 
     private var binding: FragmentWebBinding? = null
 
-    private lateinit var webView: WebView
+    private var webView: WebView? = null
     private var fileUploadCallback: ValueCallback<Array<Uri>>? = null
     private val FILE_CHOOSER_RESULT_CODE = 1
     private var customView: View? = null
 
     private var webViewList = mutableListOf<WebView>()
 
-    private lateinit var Request: PermissionRequest
-    private lateinit var Res:Array<String>
+    private var Request: PermissionRequest? = null
+    private var Res:Array<String>? = null
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
@@ -57,7 +54,7 @@ class WebFragment : Fragment() {
 
         requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-                Request.grant(Res)
+                Request?.grant(Res)
             }
         }
 
@@ -67,10 +64,10 @@ class WebFragment : Fragment() {
         }
 
         if (savedInstanceState != null) {
-            webView.restoreState(savedInstanceState)
+            webView?.restoreState(savedInstanceState)
         } else {
             webView = createWebView() // создание нового WebView
-            webView.loadUrl("https://google.com")
+            webView?.loadUrl("https://google.com")
         }
 
     }
@@ -217,7 +214,7 @@ class WebFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        webView.saveState(outState)
+        webView?.saveState(outState)
     }
 
     // очистка биндинга при очистке view
@@ -241,8 +238,8 @@ class WebFragment : Fragment() {
 
     // функция перехода по нажатии на клавишу НАЗАД
     private fun clickBack(){
-        if(webView.canGoBack()){
-            webView.goBack()
+        if(webView?.canGoBack() == true){
+            webView?.goBack()
         }else{
             MAIN.finishAffinity()
         }
